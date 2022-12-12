@@ -1,0 +1,158 @@
+working_dir: &working_dir ~/app
+version: 2.1
+################################################################################################
+description: |
+  An orb for working with Amazon Elastic Container Service (ECS).
+  Supports the EC2 and Fargate launch types
+jobs:
+  workspace-full:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+          
+      
+            
+          
+  workspace-full-vnc:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+          
+      
+
+  mdbook:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+          
+  workspace-dotnet:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+          
+  workspace-dotnet-vnc:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+          
+  workspace-postgres:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+          
+  workspace-mysql:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+  workspace-db:
+    
+    docker:
+      - image: docker:18.06.3-ce-git
+    
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          no_output_timeout : 58m
+          command: |
+            ls
+            docker run -e CI=true obraman/debian:latest
+  
+          
+  
+          
+
+  
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - workspace-full
+      - workspace-full-vnc
+      - workspace-db
+      - mdbook
+         
+      - workspace-dotnet
+          
+      - workspace-dotnet-vnc
+          
+      - workspace-postgres
+          
+      - workspace-mysql
